@@ -1,0 +1,15 @@
+# download webin CLI in 
+https://ena-docs.readthedocs.io/en/latest/submit/general-guide/webin-cli.html
+
+# download java / update java if your computer already installed java
+sudo apt install openjdk-17-jdk
+
+# Prepare the table for experiments ID
+
+
+# validate if the code work
+i=manifest/ERS21379678m
+java -jar webin-cli-8.1.0.jar -context reads -userName Webin-68621 -password Wetscapes2019 -manifest ${i} -inputDir ./data -validate
+
+# code for submit
+for i in ~/manifest/*m  ; do java -jar webin-cli-8.1.0.jar -context reads -userName Webin-68621 -password Wetscapes2019 -manifest ${i} -inputDir ./data -submit; done
