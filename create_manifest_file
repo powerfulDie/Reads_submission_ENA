@@ -1,0 +1,32 @@
+# import data 
+peatland_experiments <- read_delim("peatland_experiments.tsv", 
+                                   delim = "\t", escape_double = FALSE, 
+                                   col_names = FALSE, trim_ws = TRUE, skip = 1)
+df <- peatland_experiments 
+colnames(df) <- df[1,]
+df <-df[-1,]
+
+dir.create('manifest')
+# Loop through each row in the data frame `df`
+for (i in seq_len(nrow(df))) {
+  d = df[i, ]
+  filename = paste0(d[, 'sample'], 'm')
+  tmp = c()
+  
+  # Loop through each column in the row
+  for (j in seq_len(ncol(d))) {
+    name = colnames(d)[j]
+    value = as.character(d[1, j])  # Convert to character to avoid errors with strsplit
+    
+    # Split the value if it contains a semicolon
+    if (grepl(";", value)) {
+      value = strsplit(value, ";\\s*")[[1]]  # "\\s*" to match optional whitespace
+    }
+    
+    # Append the formatted name and value to `tmp`
+    tmp = c(tmp, paste0(name, "\t", value))
+  }
+  
+  # Write the output to a file in the "manifest" directory
+  writeLines(tmp, file.path("manifest", filename), sep = "\n")
+}
