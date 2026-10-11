@@ -4,7 +4,18 @@ https://ena-docs.readthedocs.io/en/latest/submit/general-guide/webin-cli.html
 # download java / update java if your computer already installed java
 sudo apt install openjdk-17-jdk
 
-# Prepare the table for experiments ID
+# Prepare the table for experiments ID (https://ena-docs.readthedocs.io/en/latest/submit/reads/webin-cli.html)
+STUDY: Study accession or unique name (alias) # ex:ERS 
+SAMPLE: Sample accession or unique name (alias)  # PRJE
+NAME: Unique experiment name
+PLATFORM: See permitted values. Not needed if INSTRUMENT is provided.
+INSTRUMENT: See permitted values
+INSERT_SIZE: Insert size for paired reads
+LIBRARY_NAME: Library name (optional)
+LIBRARY_SOURCE: See permitted values
+LIBRARY_SELECTION: See permitted values
+LIBRARY_STRATEGY: See permitted values
+
 
 
 # validate if the code work
